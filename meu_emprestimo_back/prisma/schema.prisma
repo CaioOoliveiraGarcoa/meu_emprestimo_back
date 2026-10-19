@@ -1,0 +1,22 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// Multi-tenancy: members belonging to a tenant (ADR-001)
+model Membership {
+  id        String   @id @default(uuid())
+  tenantId  String   @map("tenant_id")
+  userId    String   @map("user_id")
+  role      String   // "COLABORADOR" | "OPERACOES"
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@unique([tenantId, userId])
+  @@map("memberships")
+}
+
