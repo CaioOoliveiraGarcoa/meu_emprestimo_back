@@ -1,5 +1,5 @@
 import { Problem } from '../../common/problem';
-export const MAX_OPEN_LOANS = 5;
+export const MAX_OPEN_LOANS = 3;
 export const LOAN_DAYS = 14;
 export function checkBorrowingPolicy(open: { dueAt: Date }[], status: string, now: Date) {
   if (open.some(loan => loan.dueAt.getTime() < now.getTime()))
