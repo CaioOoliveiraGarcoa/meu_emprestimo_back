@@ -39,8 +39,8 @@ Comando em ambas as rodadas: `npm test -- --testPathPattern=policy.spec.ts`.
 | Limite 5 | CA-E03 · REPROVADO | Expected: "LOAN_LIMIT". Received: null. 1 reprovado e 2 aprovados. |
 | Limite 3 restaurado | CA-E03 · APROVADO | 3 aprovados. A política restaurada foi comparada byte a byte com a política entregue. |
 
-Os dois commits ficam pendentes do operador. O ensaio local demonstra o
-comportamento e não substitui os commits solicitados no enunciado.
+Os dois commits do ensaio estão na branch `evidencia-verificador-ca-e03` e
+registrados em [ENTREGA.md](../../ENTREGA.md).
 
 
 ## Dados iniciais
