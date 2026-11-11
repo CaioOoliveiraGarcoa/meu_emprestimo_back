@@ -4,10 +4,10 @@
 
 | Item | Referência |
 | --- | --- |
-| GitHub do backend | [Origem indicada no ZIP original](https://github.com/CaiodeOliveiragarcia/meu_emprestimo_back). A branch da prática ainda precisa ser enviada. |
-| GitHub do frontend | Preencher com o link do repositório remoto. |
-| Backend na Vercel | Preencher após publicar e conferir `/v1/health`. |
-| Frontend na Vercel | Preencher após publicar e conferir o site. |
+| GitHub do backend | [meu_emprestimo_back](https://github.com/CaioOoliveiraGarcoa/meu_emprestimo_back) |
+| GitHub do frontend | [meu_emprestimo_front](https://github.com/CaioOoliveiraGarcoa/meu_emprestimo_front) |
+| Backend na Vercel | [meu-emprestimo-back.vercel.app](https://meu-emprestimo-back.vercel.app). O endereço responde à saúde. Rotas da prática a conferir após novo deploy. |
+| Frontend na Vercel | [meuemprestimofront.vercel.app](https://meuemprestimofront.vercel.app). Página acessível. Fluxo autenticado a conferir. |
 | Agentes | O verificador está neste backend, em `.codex/agents/verificador.toml`. |
 
 ## 1. Conflitos
@@ -69,8 +69,10 @@ cada CA. O CI repete o check na tag. Veja [VERIFICADOR.md](docs/evidencias/VERIF
 A [rodada local](docs/evidencias/RESULTADOS.md) tem as tabelas por CA e a prova
 com erro plantado. A prova foi executada numa cópia local da política, trocando
 o limite para 5. O teste CA-E03 reprovou. O mesmo teste voltou a passar após a
-reversão e a cópia restaurada foi comparada à política do ZIP. Os dois commits
-de evidência precisam ser registrados pelo operador.
+reversão e a cópia restaurada foi comparada à política do ZIP.
+
+- [Commit com limite incorreto](https://github.com/CaioOoliveiraGarcoa/meu_emprestimo_back/commit/bf2799954a68b6a7d5949cbbba3c6a742b3b874e)
+- [Commit de restauração](https://github.com/CaioOoliveiraGarcoa/meu_emprestimo_back/commit/7fb71e4c2bb50b5a1531b51a0dfa1b9ae61f43e0)
 
 ## 7. Regra posta à prova
 
@@ -82,5 +84,4 @@ alinhado ao Prisma Migrate e exercitado no PostgreSQL local.
 
 Devolução, renovação, Operações e reservas ficaram fora da prática. Os testes
 locais usam identidades fictícias distintas da conta de correção. As fotos
-reais, Storage, Auth do projeto, deploys, links, commits e tags ainda precisam
-da execução e conferência do operador. Siga o [guia](docs/OPERACAO.md).
+reais, Storage, Auth do projeto, novo deploy do backend e tags ainda precisam da execução e conferência do operador. Siga o [guia](docs/OPERACAO.md).

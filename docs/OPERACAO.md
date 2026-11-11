@@ -1,7 +1,7 @@
 # Configurar e publicar
 
 Execute os comandos na sua máquina. O ZIP contém código, contrato e migration.
-Os links de produção e as provas em produção precisam ser preenchidos depois da publicação.
+Os links estão no ENTREGA.md. Atualize as evidências depois de conferir a produção.
 
 ## 1. Instalar e preparar o Supabase
 
@@ -78,7 +78,8 @@ repetido preserva os itens emprestados e o histórico. Confira 12 objetos públi
 ## 4. Publicar e conferir
 
 1. Suba os dois repositórios no seu GitHub. Importe cada um em um projeto
-   Vercel separado. No back, configure a versão Node do projeto e as
+   Vercel separado. Use a raiz de cada repositório como **Root Directory**.
+   No back, configure a versão Node do projeto e as
    variáveis de runtime da API, incluindo o `CORS_ORIGIN` com a URL exata
    do frontend. Deixe as credenciais de provisionamento no terminal do operador.
 2. No front, configure `VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY`
@@ -88,9 +89,8 @@ repetido preserva os itens emprestados e o histórico. Confira 12 objetos públi
    para conferir login, 12 imagens, três itens em manutenção, solicitação,
    vencimento, item indisponível e recusa no limite. Use a conta de correção
    exclusivamente para confirmar acesso e zero empréstimos.
-4. Preencha os links e a evidência em `ENTREGA.md` e atualize o parecer do
-   verificador. Registre o erro plantado e a reversão em commits de uma branch
-   de evidência, conforme [VERIFICADOR.md](evidencias/VERIFICADOR.md).
+4. Atualize a evidência dos links em `ENTREGA.md` e atualize o parecer do
+   verificador. A prova do erro plantado está registrada em `ENTREGA.md`.
 5. Quando `npm run verify:gate` aprovar os dois projetos, marque os commits
    conferidos com a tag `entrega-pratica` nos dois repositórios. Envie a tag do
    frontend antes da tag do backend, pois o CI do backend confere as duas juntas.
