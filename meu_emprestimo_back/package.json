@@ -10,8 +10,20 @@
     "start:prod": "node dist/main",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
-    "test": "jest",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test": "jest --runInBand",
+    "test:e2e": "jest --config test/jest-integration.json --runInBand",
+    "test:integration": "jest --config test/jest-integration.json --runInBand",
+    "test:images": "node --test skills/imagens-equipamentos/scripts/manifest.test.mjs",
+    "openapi": "ts-node scripts/openapi.ts",
+    "seed": "ts-node prisma/seed.ts",
+    "images:search": "node skills/imagens-equipamentos/scripts/prepare.mjs search",
+    "images:prepare": "node skills/imagens-equipamentos/scripts/prepare.mjs prepare",
+    "images:validate": "node skills/imagens-equipamentos/scripts/prepare.mjs validate",
+    "verify:gate": "node scripts/verify-gate.mjs",
+    "verify:snapshot": "node scripts/verify-gate.mjs --snapshot",
+    "check:secrets": "node scripts/check-secrets.mjs",
+    "operator:accounts": "node scripts/operator.mjs contas",
+    "operator:upload": "node scripts/operator.mjs upload"
   },
   "dependencies": {
     "@nestjs/common": "^10.4.0",
@@ -24,7 +36,12 @@
     "nestjs-zod": "^3.0.0",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",
-    "zod": "^3.23.8"
+    "zod": "^3.23.8",
+    "@nestjs/swagger": "^7.4.2",
+    "@supabase/supabase-js": "2.76.1",
+    "@casl/ability": "^6.7.3",
+    "pino": "^9.5.0",
+    "@sentry/node": "^8.47.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.4.5",
@@ -40,7 +57,9 @@
     "supertest": "^7.0.0",
     "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2",
-    "typescript": "^5.6.2"
+    "typescript": "^5.6.2",
+    "@testcontainers/postgresql": "^10.13.2",
+    "prettier": "^3.4.2"
   },
   "jest": {
     "moduleFileExtensions": [
@@ -57,7 +76,16 @@
       "**/*.(t|j)s"
     ],
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/dist/"
+    ]
+  },
+  "prisma": {
+    "seed": "node -r ts-node/register prisma/seed.ts"
+  },
+  "engines": {
+    "node": ">=22"
   }
 }
-

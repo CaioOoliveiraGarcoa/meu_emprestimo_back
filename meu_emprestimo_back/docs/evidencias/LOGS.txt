@@ -1,0 +1,48 @@
+Prisma migrate reset
+Database reset successful
+Tenant local criado ou conferido.
+🌱  The seed command has been executed.
+
+Jest backend
+Test Suites: 2 passed, 2 total
+Tests:       4 passed, 4 total
+
+Skill de imagens
+✔ CA-D03 rejeita JPEG fora das dimensões e bytes sem cabeçalho (0.985583ms)
+✔ CA-D03/D04 rejeita revisão de bytes divergentes e fonte fora do Pexels (1.863233ms)
+ℹ tests 2
+ℹ pass 2
+ℹ fail 0
+
+Supertest e PostgreSQL 17
+✓ CA-E01/02/08/09 autentica JWT por JWKS, cria e lista só o empréstimo próprio (128 ms)
+✓ CA-E03 impede a quarta solicitação e CA-E05 rejeita item em manutenção ou emprestado (70 ms)
+✓ CA-E04 rejeita atraso com só um empréstimo aberto (8 ms)
+✓ CA-E06 dois usuários disputam um item e apenas um empréstimo existe (12 ms)
+✓ CA-E07 dois pedidos da mesma pessoa com dois empréstimos abertos mantêm limite 3 (32 ms)
+✓ CA-E10 rejeita assinatura alterada, token vencido, tenant no body e item de outro tenant (21 ms)
+✓ CA-D01/02/05 repete seed mantendo 12 itens, vínculos e empréstimo de teste (36 ms)
+✓ CA-D09 papel sem BYPASSRLS não lê catálogo e banco impede duplicar empréstimo aberto (17 ms)
+✓ CA-E02 reverte empréstimo e situação se a escrita de auditoria falhar (13 ms)
+Test Suites: 1 passed, 1 total
+Tests:       9 passed, 9 total
+
+Vitest
+Test Files  1 passed (1)
+Tests  2 passed (2)
+
+Playwright em Chromium, modo DOM
+✓  1 e2e/loans.spec.ts:6:1 › CA-E01/02/05/08/11 login, catálogo, solicitação e meus empréstimos (423ms)
+1 passed (5.7s)
+
+Cliente OpenAPI
+OpenAPI e cliente Orval sincronizados.
+
+Erro plantado
+Expected: "LOAN_LIMIT"
+Received: null
+Tests:       1 failed, 2 passed, 3 total
+
+Limite 3 restaurado
+✓ CA-E03 rejeita a quarta solicitação (2 ms)
+Tests:       3 passed, 3 total

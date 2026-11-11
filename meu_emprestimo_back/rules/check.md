@@ -9,7 +9,7 @@ Sempre que você for dizer "pronto", "implementado" ou "funcionando".
 ## Procedimento
 
 1. Identifique se a tarefa é de frontend ou backend e use o comando de testes correspondente (`<COMANDO-TESTES>`). Inclua a última linha da saída na resposta.
-2. Se a tarefa tiver alterado uma migration, rode `supabase db reset` localmente e confirme que o banco sobe do zero com todas as migrations.
+2. Se a tarefa tiver alterado uma migration, rode `npx prisma migrate reset` no PostgreSQL local e confirme que o banco sobe do zero com todas as migrations.
 3. Rode o comando de build correspondente (`<COMANDO-BUILD>`) antes de qualquer push. O build precisa passar tanto para frontend quanto para backend quando a tarefa afetar os dois.
 4. Rode `git status --short`. Só podem aparecer arquivos dentro do escopo da tarefa.
 5. Informe qual critério de aceitação (`CA-xx`) a tarefa atende.
@@ -27,4 +27,4 @@ Uma tarefa só está pronta quando os comandos aplicáveis terminarem sem falha 
 ## Não faça
 
 - Não rode testes contra o banco remoto.
-- Não use `supabase db reset` contra o projeto remoto; a verificação de migrations deve ser local.
+- Nunca rode reset contra o banco remoto; a verificação de migrations deve ser local.

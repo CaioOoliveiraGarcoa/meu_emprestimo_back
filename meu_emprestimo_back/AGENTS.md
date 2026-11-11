@@ -32,3 +32,14 @@
 - Consulte `rules/check.md` para o processo de verificação antes de afirmar que a tarefa está pronta.
 - Consulte `rules/migration.md` para qualquer mudança de schema ou migration.
 - No backend, preserve a organização por domínio e as camadas `Controller -> Service -> Repository` definidas no ADR.
+
+## Verificação de specs da prática
+
+- Abra uma revisão nova com o agente `verificador` de `.codex/agents/`.
+  Passe o caminho do snapshot e as evidências dos dois repositórios.
+  O operador mantém credenciais fora da sessão de verificação.
+- Ao finalizar qualquer spec, execute `npm run verify:gate`. O comando
+  exige parecer por CA, evidência e fingerprint do código revisado.
+- Se o parecer reprovar algo, a correção fica com o agente principal.
+  Atualize o parecer numa nova rodada. Veja `docs/evidencias/VERIFICADOR.md`.
+- Skill `imagens-equipamentos`: `skills/imagens-equipamentos/SKILL.md`.

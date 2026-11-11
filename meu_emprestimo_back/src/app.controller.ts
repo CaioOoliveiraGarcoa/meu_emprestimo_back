@@ -1,18 +1,8 @@
 import { Controller, Get } from '@nestjs/common';
-
+import { ApiExcludeEndpoint } from '@nestjs/swagger';
 @Controller()
 export class AppController {
-  @Get()
-  getRoot() {
-    return { message: 'Hello World' };
-  }
-
   @Get('health')
-  getHealth() {
-    return {
-      status: 'ok',
-      service: 'EMPREST.AI-Back',
-      timestamp: new Date().toISOString(),
-    };
-  }
+  @ApiExcludeEndpoint()
+  health() { return { status: 'ok', service: 'emprest-ai' }; }
 }

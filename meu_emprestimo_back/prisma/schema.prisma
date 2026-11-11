@@ -1,22 +1,92 @@
 generator client {
   provider = "prisma-client-js"
 }
-
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
+  provider = "postgresql"
+  url = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
 }
-
-// Multi-tenancy: members belonging to a tenant (ADR-001)
+enum Category {
+  notebook
+  monitor
+  cabo
+  camera
+}
+enum EquipmentStatus {
+  disponivel
+  manutencao
+  emprestado
+}
+model Tenant {
+  id String @id
+  name String
+  memberships Membership[]
+  equipments Equipment[]
+  audits AuditEvent[]
+  rates RateLimit[]
+  @@map("tenants")
+}
 model Membership {
-  id        String   @id @default(uuid())
-  tenantId  String   @map("tenant_id")
-  userId    String   @map("user_id")
-  role      String   // "COLABORADOR" | "OPERACOES"
+  id String @id @default(uuid())
+  tenantId String @map("tenant_id")
+  userId String @map("user_id")
+  role String
   createdAt DateTime @default(now()) @map("created_at")
-
+  tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Restrict)
+  loans Loan[]
   @@unique([tenantId, userId])
   @@map("memberships")
 }
-
+model Equipment {
+  id String @id @default(uuid()) @db.Uuid
+  tenantId String @map("tenant_id")
+  patrimonio String
+  nome String
+  categoria Category
+  situacao EquipmentStatus
+  imageUrl String @map("image_url")
+  photoId Int @map("photo_id")
+  photoSha256 String @map("photo_sha256")
+  photographer String
+  photoPage String @map("photo_page")
+  licenseUrl String @map("license_url")
+  tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Restrict)
+  loans Loan[]
+  @@unique([tenantId, patrimonio])
+  @@unique([tenantId, photoId])
+  @@unique([tenantId, photoSha256])
+  @@unique([tenantId, id])
+  @@map("equipments")
+}
+model Loan {
+  id String @id @default(uuid()) @db.Uuid
+  tenantId String @map("tenant_id")
+  userId String @map("user_id")
+  equipmentId String @db.Uuid @map("equipment_id")
+  requestedAt DateTime @db.Timestamptz(3) @map("requested_at")
+  dueAt DateTime @db.Timestamptz(3) @map("due_at")
+  returnedAt DateTime? @db.Timestamptz(3) @map("returned_at")
+  equipment Equipment @relation(fields: [tenantId, equipmentId], references: [tenantId, id], onDelete: Restrict)
+  membership Membership @relation(fields: [tenantId, userId], references: [tenantId, userId], onDelete: Restrict)
+  @@index([tenantId, userId, returnedAt])
+  @@map("loans")
+}
+model AuditEvent {
+  id String @id @default(uuid()) @db.Uuid
+  tenantId String @map("tenant_id")
+  userId String @map("user_id")
+  action String
+  resourceId String @map("resource_id")
+  createdAt DateTime @default(now()) @db.Timestamptz(3) @map("created_at")
+  tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Restrict)
+  @@map("audit_events")
+}
+model RateLimit {
+  id String @id
+  tenantId String @map("tenant_id")
+  windowStart DateTime @db.Timestamptz(3) @map("window_start")
+  count Int
+  tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Restrict)
+  @@index([windowStart])
+  @@map("rate_limits")
+}

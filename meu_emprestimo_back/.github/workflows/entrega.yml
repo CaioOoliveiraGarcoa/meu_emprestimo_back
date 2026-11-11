@@ -1,0 +1,18 @@
+name: Verificação da tag de entrega
+on:
+  push:
+    tags: [entrega-pratica]
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ vars.FRONT_REPOSITORY }}
+          ref: refs/tags/entrega-pratica
+          path: front-entrega
+          token: ${{ secrets.FRONT_READ_TOKEN || github.token }}
+      - uses: actions/setup-node@v4
+        with: {node-version: '22'}
+      - run: node scripts/verify-gate.mjs ./front-entrega

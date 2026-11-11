@@ -1,0 +1,7 @@
+{
+  "rootDir": "..",
+  "testEnvironment": "node",
+  "testRegex": "test/.*\\.integration\\.ts$",
+  "transform": { "^.+\\.ts$": "ts-jest" },
+  "testTimeout": 90000
+}

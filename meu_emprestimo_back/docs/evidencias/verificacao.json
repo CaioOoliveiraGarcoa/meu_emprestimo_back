@@ -1,0 +1,99 @@
+{
+  "round": "local-2026-11-11",
+  "fingerprint": "15415e5c8a6da96a506fa561739709de0285faad29338c5d15c0a0ba7e991a11",
+  "reviewer": "Subagente verificador",
+  "criteria": {
+    "CA-D01": {
+      "status": "APROVADO",
+      "evidence": "Inventário fixo de 12 patrimônios únicos em equipamentos.json. Teste de seed conferiu 4 notebooks, 3 monitores, 3 cabos e 2 câmeras."
+    },
+    "CA-D02": {
+      "status": "APROVADO",
+      "evidence": "Teste de seed conferiu TI-0004, TI-0007 e TI-0010 em manutenção. Os outros nove começam disponíveis."
+    },
+    "CA-D03": {
+      "status": "PENDENTE",
+      "evidence": "Dois testes locais da skill validaram dimensões, origem e duplicidade com fixtures. Faltam as 12 fotos obtidas pela API do Pexels."
+    },
+    "CA-D04": {
+      "status": "PENDENTE",
+      "evidence": "O teste da skill rejeitou hash diferente do registrado na revisão. Falta revisão visual dos 12 JPEGs reais."
+    },
+    "CA-D05": {
+      "status": "PENDENTE",
+      "evidence": "O seed no PostgreSQL local manteve 12 itens, dois vínculos e um empréstimo da conta de teste após reexecução. A reexecução com Auth e Storage do deploy fica pendente."
+    },
+    "CA-D06": {
+      "status": "PENDENTE",
+      "evidence": "A carga usou dois UUIDs fictícios distintos e a conta de correção de teste teve zero empréstimos. Falta conferir a conta real em produção."
+    },
+    "CA-D07": {
+      "status": "PENDENTE",
+      "evidence": "Busca local de padrões de segredo limpa. O perfil do verificador é somente leitura. Falta conferir histórico nos dois repositórios remotos."
+    },
+    "CA-D08": {
+      "status": "PENDENTE",
+      "evidence": "A carga exige que a URL pública corresponda ao hash do manifesto. Faltam os 12 objetos no Storage público."
+    },
+    "CA-D09": {
+      "status": "APROVADO",
+      "evidence": "Prisma migrate reset aplicou a migration e o seed local em PostgreSQL 17. A integração demonstrou RLS sem BYPASSRLS e índice parcial."
+    },
+    "CA-D10": {
+      "status": "APROVADO",
+      "evidence": "O verificador independente revisou a spec, a implementação e as evidências por CA. Correções foram feitas pelo agente principal."
+    },
+    "CA-E01": {
+      "status": "PENDENTE",
+      "evidence": "JWT assinado local foi validado via JWKS e o navegador passou pelo login e catálogo com serviços interceptados. Faltam login Supabase e fotos reais no deploy."
+    },
+    "CA-E02": {
+      "status": "APROVADO",
+      "evidence": "Supertest recebeu 201. A falha de auditoria forçada produziu 500 e o PostgreSQL preservou o item disponível e nenhum empréstimo."
+    },
+    "CA-E03": {
+      "status": "APROVADO",
+      "evidence": "Supertest recebeu 409 LOAN_LIMIT na quarta tentativa. A mutação 3 → 5 reprovou o teste unitário."
+    },
+    "CA-E04": {
+      "status": "APROVADO",
+      "evidence": "Supertest recebeu 409 OVERDUE_LOAN com um único empréstimo vencido. Jest conferiu a fronteira de igualdade."
+    },
+    "CA-E05": {
+      "status": "APROVADO",
+      "evidence": "A API recusou manutenção e empréstimo existente com 409. Playwright confirmou botão desabilitado em manutenção."
+    },
+    "CA-E06": {
+      "status": "APROVADO",
+      "evidence": "Dois usuários em paralelo receberam 201 e 409. O banco ficou com um único empréstimo para o item."
+    },
+    "CA-E07": {
+      "status": "APROVADO",
+      "evidence": "Dois pedidos paralelos da mesma pessoa com dois empréstimos abertos produziram 201 e 409. Total final de três."
+    },
+    "CA-E08": {
+      "status": "APROVADO",
+      "evidence": "API retornou só empréstimos abertos da identidade autenticada. Paginação e apresentação em Meus empréstimos exercitadas."
+    },
+    "CA-E09": {
+      "status": "APROVADO",
+      "evidence": "Jest e integração verificaram 14 dias e a fronteira temporal. Vitest e Playwright conferiram exibição no horário de Brasília."
+    },
+    "CA-E10": {
+      "status": "APROVADO",
+      "evidence": "Testes recusaram assinatura alterada, token expirado, tenant no body, ausência de vínculo e item de outro tenant."
+    },
+    "CA-E11": {
+      "status": "APROVADO",
+      "evidence": "Link Fotos: Pexels exercitado no navegador. Estados de carregamento, vazio, erro e crédito individual revisados em screens.tsx."
+    },
+    "CA-E12": {
+      "status": "APROVADO",
+      "evidence": "npm run api:check conferiu o OpenAPI do backend e o cliente Orval. O CI suporta comparação com o contrato publicado após configuração do link."
+    },
+    "CA-E13": {
+      "status": "APROVADO",
+      "evidence": "O verificador analisou API, front, logs de teste e prova com erro plantado em contexto independente."
+    }
+  }
+}
